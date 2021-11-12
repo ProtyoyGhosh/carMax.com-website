@@ -12,10 +12,14 @@ const useCart = () => {
             const updateSelectedItem = [...selectedItem, item];
             setSelectedItem(updateSelectedItem);
         }
-
-
     }
 
-    return { addToCart, selectedItem };
+    function remove(product_id) {
+        alert('sure you want to delete?')
+        const removeItem = selectedItem.filter((item) => item.product_id !== product_id)
+        setSelectedItem(removeItem)
+    }
+
+    return { addToCart, selectedItem, remove };
 };
 export default useCart;

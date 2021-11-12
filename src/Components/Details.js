@@ -6,11 +6,12 @@ import useAuth from '../hooks/useAuth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as fullStar } from "@fortawesome/free-solid-svg-icons";
 import { faStar as emptyStar } from "@fortawesome/free-regular-svg-icons"
+import { NavLink } from 'react-router-dom';
 
 
 const Details = () => {
     const { id } = useParams();
-    const { items } = useAuth();
+    const { items, addToCart } = useAuth();
     const matchedItem = items.find(item => item.product_id === id);
     const { name, img, color, warenty, seller, price, rating, rating_count, servicing, product_id } = matchedItem;
 
@@ -48,7 +49,7 @@ const Details = () => {
                                         <h6>Product Id: {product_id}</h6>
                                     </Col>
                                     <div className='text-center mt-4'>
-                                        <Button className='w-75 me-1 ' variant="primary">Buy Now</Button>
+                                        <Button onClick={() => addToCart(matchedItem)} className='w-75 me-1 ' variant="primary"><NavLink style={{ textDecoration: 'none', color: "white" }} to='/myorders' >Add To Cart</NavLink></Button>
                                     </div>
                                 </Row>
                             </Col>
