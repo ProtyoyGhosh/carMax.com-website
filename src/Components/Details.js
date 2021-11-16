@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import Rating from 'react-rating';
 import { useParams } from 'react-router';
@@ -10,46 +10,53 @@ import { NavLink } from 'react-router-dom';
 
 
 const Details = () => {
+    const [item, setItem] = useState({});
     const { id } = useParams();
-    const { items, addToCart } = useAuth();
-    const matchedItem = items.find(item => item.product_id === id);
-    const { name, img, color, warenty, seller, price, rating, rating_count, servicing, product_id } = matchedItem;
+    const { addToCart } = useAuth();
+    // const matchedItem = items.find(item => item.key === Number(id));
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/items/${id}`)
+            .then(res => res.json())
+            .then(data => setItem(data))
+    }, []);
+
 
     return (
         <div className="my-5">
             {
-                name ? (
+                item?.name ? (
                     <Container>
                         <Row>
                             <Col md={6}>
-                                <img className="img-fluid" src={img} alt='cars' />
+                                <img className="img-fluid" src={item.img} alt='cars' />
                             </Col>
                             <Col md={6}>
-                                <h2>{name}</h2>
-                                <h6>Available color: {color}</h6>
-                                <h6>Warenty: {warenty} years</h6>
-                                <h6>Servicing: {servicing} years</h6>
+                                <h2>{item.name}</h2>
+                                <h6>Available color: {item.color}</h6>
+                                <h6>Warenty: {item.warenty} years</h6>
+                                <h6>Servicing: {item.servicing} years</h6>
                                 <Row className='py-3'>
                                     <Col>
-                                        <h3>Price: ${price}usd</h3>
+                                        <h3>Price: ${item.price}usd</h3>
                                         <div>
                                             <Rating
-                                                initialRating={rating}
+                                                initialRating={item.rating}
                                                 readonly
                                                 emptySymbol={<FontAwesomeIcon className="text-warning" icon={emptyStar} />} fullSymbol={<FontAwesomeIcon className="text-warning" icon={fullStar} />}
                                             />
-                                            <span>{rating}</span>
+                                            <span>{item.rating}</span>
                                             <br />
-                                            <span>Total review:{rating_count} </span>
+                                            <span>Total review:{item.rating_count} </span>
 
                                         </div>
                                     </Col>
                                     <Col>
-                                        <h6>Seller: {seller}</h6>
-                                        <h6>Product Id: {product_id}</h6>
+                                        <h6>Seller: {item.seller}</h6>
+                                        <h6>Product Id: {item.product_id}</h6>
                                     </Col>
                                     <div className='text-center mt-4'>
-                                        <Button onClick={() => addToCart(matchedItem)} className='w-75 me-1 ' variant="primary"><NavLink style={{ textDecoration: 'none', color: "white" }} to='/myorders' >Add To Cart</NavLink></Button>
+                                        <Button onClick={() => addToCart(item)} className='w-75 me-1 ' variant="primary"><NavLink style={{ textDecoration: 'none', color: "white" }} to='/myorders' >Add To Cart</NavLink></Button>
                                     </div>
                                 </Row>
                             </Col>

@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 
 const Item = ({ item }) => {
-    const { name, price, desc, img, rating, rating_count, product_id } = item;
+    const { name, price, desc, img, rating, rating_count, _id } = item;
     const { addToCart } = useAuth();
     const handleCart = () => {
         addToCart(item)
@@ -45,9 +45,9 @@ const Item = ({ item }) => {
                 </Card.Body>
 
                 <Card.Body className='d-flex my-1 py-1'>
-                    <Button className='w-75 me-1 p-2' variant="primary"> <NavLink style={{ textDecoration: 'none', color: "white" }} to={`/items/${product_id}`} >View Details</NavLink></Button>
+                    <Button className='w-75 me-1 p-2' variant="primary"> <NavLink style={{ textDecoration: 'none', color: "white" }} to={`/items/${_id}`} >View Details</NavLink></Button>
 
-                    <Button onClick={() => handleCart()} className='w-75 me-1' variant="primary"><NavLink style={{ textDecoration: 'none', color: "white" }} to='/myorders' >Add To Cart</NavLink></Button>
+                    <Button onClick={() => handleCart(item)} className='w-75 me-1' variant="primary"><NavLink style={{ textDecoration: 'none', color: "white" }} to='/myorders' >Add To Cart</NavLink></Button>
                 </Card.Body>
             </Card>
         </Zoom>
