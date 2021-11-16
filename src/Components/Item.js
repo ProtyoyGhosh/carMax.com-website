@@ -7,10 +7,16 @@ import { faStar as fullStar } from "@fortawesome/free-solid-svg-icons";
 import { faStar as emptyStar } from "@fortawesome/free-regular-svg-icons"
 import { NavLink } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
+import { useHistory } from 'react-router';
 
 const Item = ({ item }) => {
+    const history = useHistory();
     const { name, price, desc, img, rating, rating_count, _id } = item;
-    const { addToCart } = useAuth();
+    const { addToCart, allContexts } = useAuth();
+    const { user } = allContexts;
+    console.log(user);
+    const { email } = user;
+
     const handleCart = () => {
         addToCart(item)
     }
@@ -47,7 +53,13 @@ const Item = ({ item }) => {
                 <Card.Body className='d-flex my-1 py-1'>
                     <Button className='w-75 me-1 p-2' variant="primary"> <NavLink style={{ textDecoration: 'none', color: "white" }} to={`/items/${_id}`} >View Details</NavLink></Button>
 
-                    <Button onClick={() => handleCart(item)} className='w-75 me-1' variant="primary"><NavLink style={{ textDecoration: 'none', color: "white" }} to='/myorders' >Add To Cart</NavLink></Button>
+                    <Button onClick={() => {
+                        if (email) {
+                            handleCart(item)
+                        } else {
+                            history.push('/login')
+                        }
+                    }} className='w-75 me-1' variant="primary"><NavLink style={{ textDecoration: 'none', color: "white" }} to='/myorders' >Add To Cart</NavLink></Button>
                 </Card.Body>
             </Card>
         </Zoom>

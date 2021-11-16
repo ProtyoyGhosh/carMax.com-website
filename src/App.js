@@ -14,6 +14,7 @@ import Details from './Components/Details';
 import Error from './Pages/Error';
 import MyOrders from './Pages/MyOrders';
 import PrivateRoute from './Components/PrivateRoute';
+import Dashboard from './Components/Dashboard';
 
 function App() {
   return (
@@ -40,9 +41,12 @@ function App() {
             <Route path='/exploreus'>
               <ExploreUs></ExploreUs>
             </Route>
-            <PrivateRoute path='/myorders'>
+            <Route path='/myorders'>
               <MyOrders></MyOrders>
-            </PrivateRoute>
+            </Route>
+            <Route path='/dashboard'>
+              <Dashboard></Dashboard>
+            </Route>
             <Route path='/login'>
               <Login></Login>
             </Route>
