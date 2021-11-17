@@ -6,9 +6,14 @@ import { faStar as emptyStar } from "@fortawesome/free-regular-svg-icons"
 import Rating from 'react-rating';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavLink } from 'react-router-dom';
+import { useHistory } from 'react-router';
+
 
 const MyOrders = () => {
-    const { selectedItem, remove, setSelectedItem } = useAuth();
+    const history = useHistory()
+    const { selectedItem, remove, setSelectedItem, allContexts } = useAuth();
+    const { user } = allContexts;
+    const { uid } = user;
 
     const totalPrice = selectedItem.reduce((total, item) => total + item.price, 0);
 
@@ -64,6 +69,30 @@ const MyOrders = () => {
                     ))}
                 </Col>
 
+                <Col className='text-center my-5' md={4}>
+                    <h4>Total {selectedItem.length} item selected</h4>
+                    <h6>Total Price: {totalPrice.toFixed(2)} $</h6>
+
+                    <button className='btn btn-primary' onClick={() => {
+
+                        fetch(`http://localhost:5000/purchase/${uid}`, {
+                            method: 'delete'
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.deletedCount > 0) {
+                                    alert('Thank You For Purchasing');
+                                    // setSelectedItem();
+                                    history.push('/home');
+                                } else {
+                                    window.alert('no items for purchassing')
+                                }
+                            });
+
+                    }}>
+                        Purchase
+                    </button>
+                </Col>
             </Row>
         </Container>
     );
