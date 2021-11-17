@@ -1,233 +1,97 @@
-/* import initializeFirebase from "../firebase/firebase.init";
-import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
-import { useEffect, useState } from "react"; */
-
-/*
-initializeFirebase();
-const useFirebase = () => {
-
-    const [user, setUser] = useState({});
-    const [error, setError] = useState('');
-    const [userInfo, setUserInfo] = useState({}) */  /* register new user */
-
-
-    /* const auth = getAuth();
-    const googleProvider = new GoogleAuthProvider();
- */
-    // google signin
-/* const signInWithGoogle = () => {
-    return signInWithPopup(auth, googleProvider)
-
-}; */
-
-    // email & password signup
-    /* const register = () => {
-        createUserWithEmailAndPassword(auth, userInfo.email, userInfo.password)
-            .then((result) => {
-                userDisplayName()
-                setUserInfo({})
-
-            })
-            .catch((error) => {
-                setError(error.message)
-            });
-    }; */
-
-    // email & password signin
-/* const login = () => {
-    return signInWithEmailAndPassword(auth, userInfo.email, userInfo.password)
-
-}; */
-
-    // store signed in user
-    /* useEffect(() => {
-        const unSubscribe = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setUser(user)
-
-            } else {
-                setUser({})
-            }
-        });
-        return () => unSubscribe;
-    }, []) */
-
-    // set user name & url
-    /* const userDisplayName = () => {
-        updateProfile(auth.currentUser, {
-            displayName: userInfo.name, photoURL: userInfo.photo
-        }).then(() => {
-
-        }).catch((error) => {
-            setError(error.message)
-        });
-    } */
-
-    // user logout
-  /*   const logOut = () => {
-        signOut(auth)
-            .then(() => {
-                setUser({})
-            })
-            .catch((error) => {
-                setError(error.message)
-            });
-    } */
-
-    /* return {
-        signInWithGoogle,
-        user,
-        error,
-        logOut,
-        userInfo,
-        setUser,
-        setError,
-        setUserInfo,
-        register,
-        login
-    }
-
-};
-
-export default useFirebase; */
-
-
-
-
-
-// copy
-
-import { useEffect, useState } from "react";
 import {
-    GoogleAuthProvider,
     getAuth,
-    signInWithPopup,
     signOut,
-    onAuthStateChanged,
+    signInWithPopup,
+    GoogleAuthProvider,
     createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
     updateProfile,
-    sendEmailVerification,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
 } from "firebase/auth";
-import initializeFirebase from "../firebase/firebase.init.js";
+import { useEffect, useState } from "react";
+import initializeFirebase from "../firebase/firebase.init";
+
+
 initializeFirebase();
-
-const googleProvider = new GoogleAuthProvider();
-
-const auth = getAuth();
-
 const useFirebase = () => {
+    const [newUser, setNewUser] = useState({});
     const [user, setUser] = useState({});
     const [error, setError] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [name, setName] = useState("");
-    const [photoURL, setPhotoURL] = useState("");
 
-    const ClearError = () => {
-        setTimeout(() => {
-            setError("");
-        }, 5000);
-    };
+    const auth = getAuth();
+    const googleProvider = new GoogleAuthProvider();
 
-    // clear error
-    useEffect(() => {
-        ClearError();
-    }, [error]);
-
-    //google sign in
-    const signInWithGoogle = () => {
-        return signInWithPopup(auth, googleProvider);
-    };
-
-
-    //signInWithEmailAndPassword
-    const signInWithEmail = (e) => {
-        e.preventDefault();
-        signInWithEmailAndPassword(auth, email, password)
-            .then((res) => {
-                setUser(res.user);
+    // google login
+    function googleSignIn() {
+        signInWithPopup(auth, googleProvider)
+            .then((result) => {
+                const user = result.user;
+                setUser(user);
             })
             .catch((err) => setError(err.message));
-    };
-
-    // sign out
-    const logOut = () => {
-        signOut(auth)
+    }
+    // register user
+    function registerUser() {
+        createUserWithEmailAndPassword(auth, newUser.email, newUser.password)
             .then((result) => {
-                setUser({});
+                setUserDisplayName();
             })
-            .catch((err) => {
-                setError(err.message);
-            });
-    };
+            .catch((error) => setError(error.message));
+    }
 
-    // get currently signed in user
+    // login
+    function login() {
+        console.log(newUser);
+        signInWithEmailAndPassword(auth, newUser.email, newUser.password)
+            .then((result) => {
+                const user = result.user;
+                setUser(user);
+            })
+            .catch((err) => setError(err.message));
+    }
+
+    // get signed in user
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            if (currentUser) {
-                setUser(currentUser);
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setUser(user);
+            } else {
             }
         });
         return () => unsubscribe;
-    }, [user]);
+    }, []);
 
-    // get name
-    const getName = (e) => {
-        setName(e?.target?.value);
-    };
-    // get email
-    const getEmail = (e) => {
-        setEmail(e?.target?.value);
-    };
-    // get password
-    const getPassword = (e) => {
-        setPassword(e?.target?.value);
-    };
-    // get password
-    const getPhotoURL = (e) => {
-        setPhotoURL(e?.target?.value);
-    };
-
-    // signUp
-    const signUpWithEmail = () => {
-        return createUserWithEmailAndPassword(auth, email, password);
-    };
-
-    // update name and email
-    const setUserName = () => {
+    // set User name and photo url
+    function setUserDisplayName() {
         updateProfile(auth.currentUser, {
-            displayName: name,
-            photoURL: photoURL,
-        }).then((result) => { });
-    };
-
-    // sendVilifiedEmail
-    function sendVilifiedEmail() {
-        sendEmailVerification(auth.currentUser).then((result) => {
-            alert(
-                `Please verify your email, a verification email has been sent to ${email}`
-            );
-        });
+            displayName: newUser.name,
+            photoURL: newUser.photoUrl,
+        })
+            .then(() => { })
+            .catch((error) => {
+                setError(error.message);
+            });
     }
 
+    // log out
+    function logOut() {
+        signOut(auth)
+            .then(() => {
+                setUser({});
+            })
+            .catch((err) => setError(err.message));
+    }
+
+
     return {
-        sendVilifiedEmail,
-        setUserName,
-        sendEmailVerification,
-        signInWithGoogle,
+        googleSignIn,
         user,
-        setUser,
         error,
-        auth,
-        setError,
         logOut,
-        getEmail,
-        getPassword,
-        signUpWithEmail,
-        signInWithEmail,
-        getName,
-        getPhotoURL,
+        newUser,
+        setNewUser,
+        registerUser,
+        login,
     };
 };
 
