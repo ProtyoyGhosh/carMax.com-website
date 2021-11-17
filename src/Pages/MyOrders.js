@@ -8,7 +8,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavLink } from 'react-router-dom';
 
 const MyOrders = () => {
-    const { selectedItem, remove } = useAuth();
+    const { selectedItem, remove, setSelectedItem } = useAuth();
+
+    const totalPrice = selectedItem.reduce((total, item) => total + item.price, 0);
+
     return (
         <Container>
             <h3 className='text-center m-4'>Item Added In Your Cart: {selectedItem.length}</h3>
@@ -49,9 +52,9 @@ const MyOrders = () => {
                                                 </p>
                                             </Col>
                                             <Col sm={7} className="d-flex align-items-center" >
-                                                <Button className='w-100 me-1 p-2' variant="primary"> <NavLink style={{ textDecoration: 'none', color: "white" }} to={`/items/${select.product_id}`} >View Details</NavLink></Button>
+                                                <Button className='w-100 me-1 p-2' variant="primary"> <NavLink style={{ textDecoration: 'none', color: "white" }} to={`/items/${select._id}`} >View Details</NavLink></Button>
 
-                                                <Button onClick={() => remove(select.product_id)} className='w-100 me-1' variant="primary"><NavLink style={{ textDecoration: 'none', color: "white" }} to='/myorders' >Remove </NavLink></Button>
+                                                <Button onClick={() => remove(select._id)} className='w-100 me-1' variant="primary"><NavLink style={{ textDecoration: 'none', color: "white" }} to='/myorders' >Remove </NavLink></Button>
                                             </Col>
                                         </Row>
                                     </Col>

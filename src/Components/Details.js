@@ -7,12 +7,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as fullStar } from "@fortawesome/free-solid-svg-icons";
 import { faStar as emptyStar } from "@fortawesome/free-regular-svg-icons"
 import { NavLink } from 'react-router-dom';
+import { useHistory } from 'react-router';
 
 
 const Details = () => {
+    const history = useHistory();
     const [item, setItem] = useState({});
     const { id } = useParams();
-    const { addToCart } = useAuth();
+    const { addToCart, allContexts } = useAuth();
+    const { user } = allContexts;
+    const { email } = user;
     // const matchedItem = items.find(item => item.key === Number(id));
 
     useEffect(() => {
@@ -56,7 +60,13 @@ const Details = () => {
                                         <h6>Product Id: {item.product_id}</h6>
                                     </Col>
                                     <div className='text-center mt-4'>
-                                        <Button onClick={() => addToCart(item)} className='w-75 me-1 ' variant="primary"><NavLink style={{ textDecoration: 'none', color: "white" }} to='/myorders' >Add To Cart</NavLink></Button>
+                                        <Button onClick={() => {
+                                            if (email) {
+                                                addToCart(item)
+                                            } else {
+                                                history.push('/login')
+                                            }
+                                        }} className='w-75 me-1 ' variant="primary"><NavLink style={{ textDecoration: 'none', color: "white" }} to='/myorders' >Add To Cart</NavLink></Button>
                                     </div>
                                 </Row>
                             </Col>
