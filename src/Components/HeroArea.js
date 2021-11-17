@@ -1,28 +1,54 @@
+import Button from '@restart/ui/esm/Button';
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+import Bg from '../assets/images/bg22.jpg';
+import { useHistory } from "react-router-dom";
+import Bounce from "react-reveal/Bounce";
+
 
 const HeroArea = () => {
+    const history = useHistory();
+    function GoServices() {
+        history.push("/items");
+    }
     return (
-        <Container
+        <div
             style={{
-                height: 'calc(100vh - 56px)',
-                display: 'flex',
-                alignItems: 'center'
+                background: `url(${Bg})`,
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center center",
+                backgroundSize: "cover",
             }}
         >
-            <Row>
-                <Col sm={12} md={6}>
-                    <h1>Find the Car You Want, Your Way</h1>
-                    <p>
-                        Use our extensive database to research and compare trims, photos, and reviews for every make and model, so you can find the car that fits your life.
-                    </p>
-                    <button className='btn btn-primary rounded-pill'>Get Started</button>
-                </Col>
-                <Col sm={12} md={6}>
-                    <img className='img-fluid' src='https://my-gerez.web.app/static/media/banner-img.6552e1ee.png' alt='car'></img>
-                </Col>
-            </Row>
-        </Container>
+            <Container>
+                <div
+                    style={{ height: "90vh" }}
+                    className="d-flex justify-content-center align-items-center"
+                >
+                    <div className="text-center my-5 py-5">
+                        <Bounce left cascade>
+                            <h1 className="text-white">Welcome to carMax.com</h1>
+                        </Bounce>
+
+                        <Bounce right cascade>
+                            <p className="my-4 text-white fs-5">
+                                Lead a speedy life.We are here,whenever you need us.Let us help you to choose a car of your life!!
+                            </p>
+                        </Bounce>
+
+                        <Bounce>
+                            <Button
+                                onClick={GoServices}
+                                className="rounded-pill fs-5 py-2 px-4 btn-primary"
+                            >
+                                View Items
+                            </Button>
+                        </Bounce>
+                    </div>
+                </div>
+            </Container>
+        </div>
+
     );
 };
 
