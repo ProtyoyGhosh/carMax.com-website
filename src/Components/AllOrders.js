@@ -2,26 +2,48 @@ import React, { useEffect, useState } from 'react';
 
 const AllOrders = () => {
     const [orders, setOrders] = useState([]);
+    const [reload, setReload] = useState(true);
     useEffect(() => {
         fetch('http://localhost:5000/orders')
             .then(res => res.json())
             .then(data => setOrders(data))
-    }, []);
+    }, [reload]);
 
     const cancel = (id) => {
-        fetch(`http://localhost:5000/delete/${id}`, {
-            method: 'delete',
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.deletedCount === 1) {
-                    const remainingItem = orders.fillter((order) => order._id !== id);
-                    setOrders(remainingItem);
-                } else {
-                    alert('something went wrong')
-                }
+        const alert = window.confirm('sure want to delete?')
+        if (alert) {
+            fetch(`http://localhost:5000/delete/${id}`, {
+                method: 'delete',
             })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount === 1) {
+                        const remainingItem = orders.filter((order) => order._id !== id);
+                        setOrders(remainingItem);
+                    } else {
+                        alert('something went wrong')
+                    }
+                })
+        }
+    };
+
+    const confirm = (id) => {
+        const alert = window.confirm('Order status Confirmed')
+        if (alert) {
+            fetch(`http://localhost:5000/confirm/${id}`, {
+                method: 'put',
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.modifiedCount === 1) {
+                        setReload(!reload)
+                    }
+                })
+        } else {
+            alert('Status already confirmed')
+        }
     }
+
 
     return (
         <div>
@@ -57,7 +79,7 @@ const AllOrders = () => {
                                         <button onClick={() => cancel(_id)} className='btn btn-danger'>Delete</button>
                                     </td>
                                     <td>
-                                        <button className='btn btn-success'>Confirm</button>
+                                        <button onClick={() => confirm(_id)} className='btn btn-success'>Confirm</button>
                                     </td>
                                 </tr>
                             )

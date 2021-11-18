@@ -82,7 +82,8 @@ const MyOrders = () => {
                             .then(data => {
                                 if (data.deletedCount > 0) {
                                     alert('Thank You For Purchasing');
-                                    // setSelectedItem();
+                                    const matched = selectedItem.find((sItem) => sItem.uid !== uid)
+                                    // setSelectedItem(matched);
                                     history.push('/home');
                                 } else {
                                     window.alert('no items for purchassing')
