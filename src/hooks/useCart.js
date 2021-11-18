@@ -4,7 +4,7 @@ import useFirebase from "./useFirebase";
 
 const useCart = () => {
     const { user } = useFirebase();
-    const { uid } = user;
+    const { uid, displayName, email } = user;
     const [selectedItem, setSelectedItem] = useState([]);
 
     useEffect(() => {
@@ -23,6 +23,8 @@ const useCart = () => {
         const isExisted = selectedItem.find(selected => selected.product_id === item.product_id);
 
         delete item._id;
+        item.userName = displayName;
+        item.email = email;
         item.uid = uid;
         item.status = 'pending';
 

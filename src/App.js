@@ -15,6 +15,8 @@ import Error from './Pages/Error';
 import MyOrders from './Pages/MyOrders';
 import PrivateRoute from './Components/PrivateRoute';
 import Dashboard from './Components/Dashboard';
+import PayLinks from './Components/PayLinks';
+import Reviews from './Components/Reviews';
 
 function App() {
   return (
@@ -44,9 +46,15 @@ function App() {
             <Route path='/myorders'>
               <MyOrders></MyOrders>
             </Route>
-            <Route path='/dashboard'>
+            <PrivateRoute path='/dashboard'>
               <Dashboard></Dashboard>
+            </PrivateRoute>
+            {/* <Route path='paylinks'>
+              <PayLinks></PayLinks>
             </Route>
+            <Route path='reviews'>
+              <Reviews></Reviews>
+            </Route> */}
             <Route path='/login'>
               <Login></Login>
             </Route>

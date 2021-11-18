@@ -22,9 +22,9 @@ const Header = () => {
                                 {/* <Nav.Link className='text-white' as={Link} to="/myorders">My Orders</Nav.Link> */}
                                 <Nav.Link className='text-white' as={Link} to="/dashboard">Dashboard</Nav.Link>
 
-                                {/* <Nav.Link onClick={logOut} className='text-white' as={Link} to="/login">Logout</Nav.Link>
-                                <Nav.Link className='text-dark'>Hello {user.displayName}</Nav.Link> */}
-                                <NavDropdown
+                                <Nav.Link onClick={logOut} className='text-white' as={Link} to="/login">Logout</Nav.Link>
+                                <Nav.Link className='text-dark'>Hello {user.displayName}</Nav.Link>
+                                {/*  <NavDropdown
                                     title={
                                         <>
                                             <img
@@ -44,7 +44,7 @@ const Header = () => {
                                             </button>
                                         </div>
                                     </div>
-                                </NavDropdown>
+                                </NavDropdown> */}
                             </>
                                 :
                                 <Nav.Link className='text-white' as={Link} to="/login">Login</Nav.Link>

@@ -8,7 +8,7 @@ const Profile = () => {
     const { displayName, photoURL, email } = user;
     return (
         <div>
-            <h3 className='text-center'>This is User Profile</h3>
+            <h3 className='text-center'>This is {displayName}'s Profile</h3>
             <Container className='my-5'>
                 <Row>
                     <Col md={4}>
