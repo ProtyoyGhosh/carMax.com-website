@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap';
 import useAuth from '../hooks/useAuth';
 import Item from './Item';
 import Bounce from 'react-reveal/Bounce';
-import sectionBG from '../assets/images/background.jpg'
+import sectionBG from '../assets/images/sectionBg.png'
 
 const Items = () => {
     const { items } = useAuth();
