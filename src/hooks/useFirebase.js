@@ -40,10 +40,13 @@ const useFirebase = () => {
     }
 
     // login
-    function login() {
+    function login(location, history) {
         console.log(newUser);
         signInWithEmailAndPassword(auth, newUser.email, newUser.password)
+
             .then((result) => {
+                const destination = location?.state?.from || '/';
+                history.replace(destination);
                 const user = result.user;
                 setUser(user);
             })

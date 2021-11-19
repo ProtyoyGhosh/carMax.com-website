@@ -1,13 +1,16 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
+import { useHistory } from 'react-router';
 
 const AddProduct = () => {
+    const history = useHistory();
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
-        console.log(data);
 
-        // giving alert after successfully adding a package
+        // giving alert after successfully adding a item
         alert('package added successfully,please explore')
+
+        history.push('/exploreus');
 
         // set the add package data to the database
         fetch('http://localhost:5000/addpackage', {

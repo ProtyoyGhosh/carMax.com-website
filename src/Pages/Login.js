@@ -1,9 +1,13 @@
 import React from "react";
 import { Container, Form, Button } from "react-bootstrap";
+import { useHistory } from "react-router";
+import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import useAuth from '../hooks/useAuth';
 
 const Login = () => {
+    const location = useLocation();
+    const history = useHistory();
     const { allContexts } = useAuth();
     const { newUser, setNewUser, login, googleSignIn } = allContexts;
 
@@ -16,7 +20,7 @@ const Login = () => {
     }
 
     function logInHandaler(e) {
-        login();
+        login(location, history);
         e.target.reset();
         e.preventDefault();
     }

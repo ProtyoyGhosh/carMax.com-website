@@ -43,18 +43,12 @@ function App() {
             <Route path='/exploreus'>
               <ExploreUs></ExploreUs>
             </Route>
-            <Route path='/myorders'>
+            <privateRoute path='/myorders'>
               <MyOrders></MyOrders>
-            </Route>
-            <PrivateRoute path='/dashboard'>
+            </privateRoute>
+            <Route path='/dashboard'>
               <Dashboard></Dashboard>
-            </PrivateRoute>
-            {/* <Route path='paylinks'>
-              <PayLinks></PayLinks>
             </Route>
-            <Route path='reviews'>
-              <Reviews></Reviews>
-            </Route> */}
             <Route path='/login'>
               <Login></Login>
             </Route>
