@@ -36,6 +36,7 @@ const ManageProduct = () => {
                         <th scope="col">Image</th>
                         <th scope="col">Item</th>
                         <th scope="col">Price</th>
+                        <th scope="col">Seller</th>
                         <th scope="col">Delete</th>
 
                     </tr>
@@ -43,12 +44,13 @@ const ManageProduct = () => {
                 <tbody>
                     {
                         products.map(product => {
-                            const { img, name, _id, price } = product;
+                            const { img, name, _id, price, seller } = product;
                             return (
                                 <tr key={_id}>
                                     <td><img width='50px' src={img} alt='car' /></td>
                                     <td>{name}</td>
                                     <td>{price} $</td>
+                                    <td>{seller}</td>
                                     <td>
                                         <button onClick={() => cancel(_id)} className='btn btn-danger'>Delete</button>
                                     </td>

@@ -25,13 +25,13 @@ const NormalUser = () => {
                             </li>
                             <li className='w-100 mb-2'>
                                 <input
-                                    onClick={() => setCurrent('Cart')}
+                                    onClick={() => setCurrent('My Orders')}
                                     className={
-                                        current === 'Cart' ? 'w-100 bg-info text-dark d-block border-0' :
+                                        current === 'My Orders' ? 'w-100 bg-info text-dark d-block border-0' :
                                             'w-100 bg-dark text-white d-block border-0'
                                     }
                                     type='button'
-                                    value='Cart'
+                                    value='My Orders'
                                 />
                             </li>
                             <li className='w-100 mb-2'>
@@ -61,7 +61,7 @@ const NormalUser = () => {
 
                     <div className='col-md-9'>
                         {
-                            (current === 'Profile' && <Profile></Profile>) || (current === 'Cart' && <MyOrders></MyOrders>) || (current === 'Pay Links' && <PayLinks></PayLinks>) || (current === 'Add Review' && <Reviews></Reviews>)
+                            (current === 'Profile' && <Profile></Profile>) || (current === 'My Orders' && <MyOrders></MyOrders>) || (current === 'Pay Links' && <PayLinks></PayLinks>) || (current === 'Add Review' && <Reviews></Reviews>)
                         }
                     </div>
                 </div>
