@@ -11,12 +11,12 @@ const Review = (props) => {
     const { name, words, rate } = props.review;
     return (
         <Bounce left>
-            <div className='col-md-6 p-4'>
+            <div className='col-md-4 p-4'>
                 <Card>
                     <Card.Header className='bg-success text-white' as="h5">{name}</Card.Header>
                     <Card.Body>
                         <Card.Text>
-                            {words}
+                            {words.slice(0, 85)}
                         </Card.Text>
                         <Card.Title>
                             <Rating

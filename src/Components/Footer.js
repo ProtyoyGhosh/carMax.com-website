@@ -1,69 +1,124 @@
 import React from 'react';
+import { Col, Container, Row } from "react-bootstrap";
+import Payment from "../assets/images/payment.png";
+import { library } from "@fortawesome/fontawesome-svg-core";
+// import "./footer.css";
+import {
+    faEnvelope,
+    faMapMarkerAlt,
+    faPhone,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { NavLink } from "react-router-dom";
+import FooterBG from "../assets/images/footer-bg.png";
+
+library.add(
+    faEnvelope,
+    faMapMarkerAlt,
+    faPhone
+);
 
 const Footer = () => {
+    const navStyle = {
+        textDecoration: "none",
+        color: "white",
+        borderBottom: "2px solid transparent",
+        fontSize: "17px",
+        fontWeight: "bold",
+        marginBottom: "10px",
+        display: "inline-block",
+    };
     return (
-        <div className="bg-dark text-white pt-5 pb-4">
-            <div className="row container text-center text-md-left">
-                <div className="col-md-3 col-lg-3 mx-auto mt-3">
-                    <h5 className='text-uppercase mb-4 font-weight-bold text-info'>
-                        Desh Travel
-                    </h5>
-                    <p>Desh Travel brings you the places to visit in Bangladesh. We will guide you for visiting the tourist’s spots, historical places & ecotourism sites in Bangladesh</p>
-                </div>
+        <div style={{
+            background: `url(${FooterBG})`,
+            backgroundRepeat: "repeat",
+            padding: "40px 0 0",
+        }}>
+            <Container>
+                <Row>
+                    <Col>
+                        <div className="text-center">
+                            <h3 className='text-white'>carMax.com</h3>
+                        </div>
+                        <ul className="list-unstyled mt-3 w-100">
+                            <li className="fs-6 fw-bold mb-2 text-white">
+                                <FontAwesomeIcon
+                                    className="me-2 social-icon"
+                                    icon={faMapMarkerAlt}
+                                />{" "}
+                                Kushtia,Khulna,Bangladesh
+                            </li>
+                            <li className="fs-6 fw-bold mb-2 text-white">
+                                <FontAwesomeIcon
+                                    className="me-2 social-icon"
+                                    icon={faEnvelope}
+                                />{" "}
+                                Official: carMax@gmail.com
+                            </li>
+                            <li className="fs-6 fw-bold mb-2 text-white">
+                                <FontAwesomeIcon className="me-2 social-icon" icon={faPhone} />{" "}
+                                Helpline: 017632523419(Available:10:00AM to 10.00PM)
+                            </li>
+                        </ul>
+                    </Col>
+                    <Col md={3}>
+                        <ul className="list-unstyled">
+                            <li>
+                                <NavLink className="menuStyle" style={navStyle} to="/home">
+                                    Home
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink className="menuStyle" style={navStyle} to="/about">
+                                    About us
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink className="menuStyle" style={navStyle} to="/contact">
+                                    Contact us
+                                </NavLink>
+                            </li>
 
-                <div className="col-md-2 col-lg-2 mx-auto mt-3">
-                    <h5 className="text-uppercase mb-4 font-weight-bold text-info">
-                        terms
-                    </h5>
-                    <p>
-                        <a href="#" className='text-white' style={{ textDecoration: 'none' }}>Payment Method</a>
-                    </p>
-                    <p><a href="#" className='text-white' style={{ textDecoration: 'none' }}>Booking Policy</a>
-                    </p>
-                    <p><a href="#" className='text-white' style={{ textDecoration: 'none' }}>Legal Help</a>
-                    </p>
-                    <p><a href="#" className='text-white' style={{ textDecoration: 'none' }}>Vat & Taxs</a>
-                    </p>
-                </div>
+                            <li>
+                                <NavLink className="menuStyle" style={navStyle} to="/items">
+                                    Items
+                                </NavLink>
+                            </li>
 
-                <div className="col-md-3 col-lg-2 mx-auto mt-3">
-                    <h5 className="text-uppercase mb-4 font-weight-bold text-info">
-                        links
-                    </h5>
-                    <p>
-                        <a href="#" className='text-white' style={{ textDecoration: 'none' }}>Tours in Bangladesh</a>
-                    </p>
-                    <p><a href="#" className='text-white' style={{ textDecoration: 'none' }}>Popular Tours</a>
-                    </p>
-                    <p><a href="#" className='text-white' style={{ textDecoration: 'none' }}>World Heritages</a>
-                    </p>
-                    <p><a href="#" className='text-white' style={{ textDecoration: 'none' }}>Top Attractions</a>
-                    </p>
-                </div>
+                            <li>
+                                <NavLink className="menuStyle" style={navStyle} to="/policy">
+                                    Policy
+                                </NavLink>
+                            </li>
+                        </ul>
+                    </Col>
+                    <Col md={4}>
+                        <img className="img-fluid" src={Payment} alt="" />
+                    </Col>
+                </Row>
 
-                <div className="col-md-4 col-lg-3 mx-auto mt-3">
-                    <h5 className='text-uppercase mb-4 font-weight-bold text-info'>Contact</h5>
-                    <p><small className='me-3'>72/2, BB ghosh Lane,Kalishankarpur,Kushtia,Dhaka.</small></p>
-                    <p><small className='me-3'>+8801915441238,+918420421766</small></p>
-                    <p><small className='me-3'>deshtravel@gmail.com</small></p>
-                    <p><small className='me-3'>info.deshtravel@gmail.com</small></p>
-                </div>
-            </div>
+            </Container>
+            <hr className="mt-2 mb-0 bg-white" />
+            <p
+                style={{ background: "#000099" }}
+                className="m-0 fw-bold py-3  text-white text-center"
+            >
+                Copyright &copy; All Reserved by{" "}
+                <a
+                    className="text-decoration-none"
+                    style={{ color: "#ff136f" }}
+                    target="_blank"
+                    rel="noreFerrer"
+                    href="https://www.facebook.com"
+                >
+                    protyoy kumar Ghosh
+                </a>{" "}
+                in 2021
+            </p>
 
-            <hr className='mb-4' />
-            <div className="row align-items-center">
-                <div className="col-md-12">
-                    <p>
-                        Copyright @2021 ALL rights reserved by
-                        <a href="" style={{ textDecoration: 'none' }}>
-                            <strong className='text-info'> Protyoy Kumar Ghosh</strong>
-                        </a>
-                    </p>
-                </div>
-            </div>
 
         </div>
     );
-};
 
+}
 export default Footer;
