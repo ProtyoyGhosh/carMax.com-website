@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import useAuth from '../hooks/useAuth';
 import { faStar as fullStar } from "@fortawesome/free-solid-svg-icons";
@@ -10,6 +10,7 @@ import { useHistory } from 'react-router';
 
 
 const MyOrders = () => {
+    const [reload, setReload] = useState(true);
     const history = useHistory()
     const { selectedItem, remove, setSelectedItem, allContexts } = useAuth();
     const { user } = allContexts;
@@ -82,8 +83,9 @@ const MyOrders = () => {
                             .then(data => {
                                 if (data.deletedCount > 0) {
                                     alert('Thank You For Purchasing');
-                                    const matched = selectedItem.find((sItem) => sItem.uid !== uid)
-                                    // setSelectedItem(matched);
+                                    /* const matched = selectedItem.find((sItem) => sItem.uid !== uid)
+                                    setSelectedItem(matched); */
+                                    setReload(!reload);
                                     history.push('/home');
                                 } else {
                                     window.alert('no items for purchassing')

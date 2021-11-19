@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AddProduct from './AddProduct';
 import AllOrders from './AllOrders';
 import MakeAdmin from './MakeAdmin';
+import ManageProduct from './ManageProduct';
 import Profile from './Profile';
 
 const Admin = () => {
@@ -57,12 +58,23 @@ const Admin = () => {
                                     value='Make Admin'
                                 />
                             </li>
+                            <li className='w-100 mb-2'>
+                                <input
+                                    onClick={() => setCurrent('Manage Product')}
+                                    className={
+                                        current === 'Manage Product' ? 'w-100 bg-info text-dark d-block border-0' :
+                                            'w-100 bg-dark text-white d-block border-0'
+                                    }
+                                    type='button'
+                                    value='Manage Product'
+                                />
+                            </li>
                         </ul>
                     </div>
 
                     <div className='col-md-9'>
                         {
-                            (current === 'Profile' && <Profile></Profile>) || (current === 'Manage All Orders' && <AllOrders></AllOrders>) || (current === 'Add a Product' && <AddProduct></AddProduct>) || (current === 'Make Admin' && <MakeAdmin></MakeAdmin>)
+                            (current === 'Profile' && <Profile></Profile>) || (current === 'Manage All Orders' && <AllOrders></AllOrders>) || (current === 'Add a Product' && <AddProduct></AddProduct>) || (current === 'Make Admin' && <MakeAdmin></MakeAdmin>) || (current === 'Manage Product' && <ManageProduct></ManageProduct>)
                         }
                     </div>
                 </div>
