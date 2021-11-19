@@ -14,7 +14,7 @@ const HappyCustomer = () => {
     return (
         <Slider top>
             <div>
-                <h3 className='text-center my-2 text-primary' style={{ fontSize: '40px', fontWeight: '600' }}>Our Happy Customer</h3>
+                <h3 className='text-center my-2' style={{ fontSize: '40px', fontWeight: 'bold' }}>Our Happy Customer</h3>
                 <h6 className='text-center my-2 text-primary' style={{ fontSize: '20px' }}>"we are here because of you"</h6>
                 <Container>
                     <div className='row'>

@@ -27,7 +27,7 @@ const Item = ({ item }) => {
                 <Card.Body className="my-1 py-1">
                     <Card.Title>{name}</Card.Title>
                     <Card.Text>
-                        {desc}
+                        {desc.slice(0, 162)}
                     </Card.Text>
                 </Card.Body>
 
