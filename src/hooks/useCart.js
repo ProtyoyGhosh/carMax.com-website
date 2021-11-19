@@ -8,7 +8,7 @@ const useCart = () => {
     const [selectedItem, setSelectedItem] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/cart/${uid}`)
+        fetch(`https://salty-meadow-08648.herokuapp.com/cart/${uid}`)
             .then(res => res.json())
             .then(data => {
                 if (data.length) {
@@ -32,7 +32,7 @@ const useCart = () => {
             alert('Item Already in your cart')
         } else {
 
-            fetch('http://localhost:5000/item/add', {
+            fetch('https://salty-meadow-08648.herokuapp.com/item/add', {
                 method: 'post',
                 headers: { 'content-type': 'application/json' },
                 body: JSON.stringify(item)
@@ -52,7 +52,7 @@ const useCart = () => {
         alert('sure you want to delete?')
 
 
-        fetch(`http://localhost:5000/delete/${id}`, {
+        fetch(`https://salty-meadow-08648.herokuapp.com/delete/${id}`, {
             method: 'delete',
         })
             .then(res => res.json())

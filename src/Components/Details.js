@@ -17,10 +17,9 @@ const Details = () => {
     const { addToCart, allContexts } = useAuth();
     const { user } = allContexts;
     const { email } = user;
-    // const matchedItem = items.find(item => item.key === Number(id));
 
     useEffect(() => {
-        fetch(`http://localhost:5000/items/${id}`)
+        fetch(`https://salty-meadow-08648.herokuapp.com/items/${id}`)
             .then(res => res.json())
             .then(data => setItem(data))
     }, []);

@@ -10,7 +10,7 @@ const Reviews = () => {
         alert('Thank you for your Review!!')
 
         // set the add package data to the database
-        fetch('http://localhost:5000/addreview', {
+        fetch('https://salty-meadow-08648.herokuapp.com/addreview', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(data)

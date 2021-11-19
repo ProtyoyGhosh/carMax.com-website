@@ -4,7 +4,7 @@ const AllOrders = () => {
     const [orders, setOrders] = useState([]);
     const [reload, setReload] = useState(true);
     useEffect(() => {
-        fetch('http://localhost:5000/orders')
+        fetch('https://salty-meadow-08648.herokuapp.com/orders')
             .then(res => res.json())
             .then(data => setOrders(data))
     }, [reload]);
@@ -12,7 +12,7 @@ const AllOrders = () => {
     const cancel = (id) => {
         const alert = window.confirm('sure want to delete?')
         if (alert) {
-            fetch(`http://localhost:5000/delete/${id}`, {
+            fetch(`https://salty-meadow-08648.herokuapp.com/delete/${id}`, {
                 method: 'delete',
             })
                 .then(res => res.json())
@@ -30,7 +30,7 @@ const AllOrders = () => {
     const confirm = (id) => {
         const alert = window.confirm('Order status Confirmed')
         if (alert) {
-            fetch(`http://localhost:5000/confirm/${id}`, {
+            fetch(`https://salty-meadow-08648.herokuapp.com/confirm/${id}`, {
                 method: 'put',
             })
                 .then(res => res.json())

@@ -2,7 +2,7 @@ import React from 'react';
 import { Col, Container, Row } from "react-bootstrap";
 import Payment from "../assets/images/payment.png";
 import { library } from "@fortawesome/fontawesome-svg-core";
-// import "./footer.css";
+
 import {
     faEnvelope,
     faMapMarkerAlt,

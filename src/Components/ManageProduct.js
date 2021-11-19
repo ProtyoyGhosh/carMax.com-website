@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const ManageProduct = () => {
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/items')
+        fetch('https://salty-meadow-08648.herokuapp.com/items')
             .then(res => res.json())
             .then(data => setProducts(data))
     }, []);
@@ -11,7 +11,7 @@ const ManageProduct = () => {
     const cancel = (id) => {
         const approved = window.confirm('sure want to delete?')
         if (approved) {
-            fetch(`http://localhost:5000/deleteItem/${id}`, {
+            fetch(`https://salty-meadow-08648.herokuapp.com/deleteItem/${id}`, {
                 method: 'delete',
             })
                 .then(res => res.json())

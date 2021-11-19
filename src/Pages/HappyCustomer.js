@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import Review from './Review';
 import Slider from 'react-reveal/Bounce';
 
@@ -7,7 +7,7 @@ import Slider from 'react-reveal/Bounce';
 const HappyCustomer = () => {
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/reviews')
+        fetch('https://salty-meadow-08648.herokuapp.com/reviews')
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [])

@@ -76,7 +76,7 @@ const MyOrders = () => {
 
                     <button className='btn btn-primary' onClick={() => {
 
-                        fetch(`http://localhost:5000/purchase/${uid}`, {
+                        fetch(`https://salty-meadow-08648.herokuapp.com/purchase/${uid}`, {
                             method: 'delete'
                         })
                             .then(res => res.json())

@@ -8,13 +8,14 @@ mongodb used as a database.
 ## Available Live Site
 
 Please click this link for the live exprience of the website
+https://simple-firebase-authenti-9e8ce.web.app/
 
 
 ## what about this website
 
 * This is a car buying website
 * In the Home page we have a navbar,banner,items,promotion,review & a footer
-* Home page wehave only 6 feature items,On the other hand in the explore page on the navbar we have all the items available right now.
+* Home page we have only 6 feature items,On the other hand in the explore page on the navbar we have all the items available right now.
 * To add any product to cart user have to login .
 * You can register yourself then login with email & password or we have also a google sign in method.
 * After login you can see a dashboard on the navbar with a welcome text
@@ -25,11 +26,4 @@ Please click this link for the live exprience of the website
 8 After all the activities we have also a logout option.
 * Thank you for your time,hope you will like this project
 
-### `npm start`
-
-client side
-https://github.com/programming-hero-web-course-4/niche-website-client-side-ProtyoyGhosh
-
-server side
-https://github.com/programming-hero-web-course-4/niche-website-server-side-ProtyoyGhosh
 

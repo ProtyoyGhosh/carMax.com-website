@@ -13,7 +13,7 @@ const AddProduct = () => {
         history.push('/exploreus');
 
         // set the add package data to the database
-        fetch('http://localhost:5000/addpackage', {
+        fetch('https://salty-meadow-08648.herokuapp.com/addpackage', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(data)

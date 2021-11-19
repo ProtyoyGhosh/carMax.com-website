@@ -1,6 +1,6 @@
 import Button from '@restart/ui/esm/Button';
 import React from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import Bg from '../assets/images/bg22.jpg';
 import { useHistory } from "react-router-dom";
 import Bounce from "react-reveal/Bounce";

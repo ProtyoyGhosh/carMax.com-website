@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import market from '../assets/images/car2.png';
 import Tada from 'react-reveal/Tada';
 

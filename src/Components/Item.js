@@ -11,7 +11,7 @@ import { useHistory } from 'react-router';
 
 const Item = ({ item }) => {
     const history = useHistory();
-    const { name, price, desc, img, rating, rating_count, _id, product_id } = item;
+    const { name, price, desc, img, rating, rating_count, _id } = item;
     const { addToCart, allContexts } = useAuth();
     const { user } = allContexts;
     const { email } = user;
